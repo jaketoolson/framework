@@ -30,17 +30,21 @@ class Str {
 	}
 
 	/**
-	 * Determine if a given string contains a given substring.
+	 * Determine if a given string contains a given substring. Strict match is false by default.
 	 *
 	 * @param  string  $haystack
 	 * @param  string|array  $needles
+	 * @param  bool  $strict
 	 * @return bool
 	 */
-	public static function contains($haystack, $needles)
+	public static function contains($haystack, $needles, $strict = false)
 	{
 		foreach ((array) $needles as $needle)
 		{
-			if ($needle != '' && strpos($haystack, $needle) !== false) return true;
+			if ($needle != '' && strpos($haystack, $needle) !== false)
+			{
+				if (! $strict || ($strict && preg_match("/\b{$needle}\b/i", $haystack))) return true;
+			}
 		}
 
 		return false;
