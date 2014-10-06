@@ -779,15 +779,16 @@ if ( ! function_exists('storage_path'))
 if ( ! function_exists('str_contains'))
 {
 	/**
-	 * Determine if a given string contains a given substring.
+	 * Determine if a given string contains a given substring. Strict match is false by default.
 	 *
 	 * @param  string  $haystack
 	 * @param  string|array  $needles
+	 * @param  bool  $strict 
 	 * @return bool
 	 */
-	function str_contains($haystack, $needles)
+	function str_contains($haystack, $needles, $strict = false)
 	{
-		return Str::contains($haystack, $needles);
+		return Str::contains($haystack, $needles, $strict);
 	}
 }
 
